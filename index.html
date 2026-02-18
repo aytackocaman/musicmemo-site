@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Memo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .container { max-width: 420px; }
+    .logo { font-size: 64px; margin-bottom: 16px; }
+    h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+    p { font-size: 18px; opacity: 0.9; margin-bottom: 32px; line-height: 1.5; }
+    .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .badge {
+      display: inline-block;
+      background: #fff;
+      color: #18181B;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: transform 0.15s;
+    }
+    .badge:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🎵</div>
+    <h1>Music Memo</h1>
+    <p>A turn-based card matching game where you flip cards, hear sounds, and find matching pairs by memory.</p>
+    <div class="badges">
+      <a class="badge" href="#">App Store (Coming Soon)</a>
+    </div>
+  </div>
+</body>
+</html>

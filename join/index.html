@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join Game - Music Memo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .container { max-width: 420px; }
+    .logo { font-size: 64px; margin-bottom: 16px; }
+    h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+    p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; line-height: 1.5; }
+    .code-box {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 16px;
+      padding: 20px 32px;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+    .code {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 8px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .code-label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .btn {
+      display: inline-block;
+      background: #fff;
+      color: #18181B;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: transform 0.15s;
+      margin-bottom: 12px;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .hint { font-size: 14px; opacity: 0.7; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🎵</div>
+    <h1>You've been invited!</h1>
+    <p>Someone wants to play Music Memo with you.</p>
+    <div class="code-box" id="code-box" style="display:none">
+      <div class="code-label">Invite Code</div>
+      <div class="code" id="invite-code"></div>
+    </div>
+    <br />
+    <a class="btn" id="open-btn" href="#">Open in App</a>
+    <p class="hint">Don't have the app? Download it from the App Store.</p>
+  </div>
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    if (code && /^[A-Za-z0-9]{6}$/.test(code)) {
+      code = code.toUpperCase();
+      document.getElementById('invite-code').textContent = code;
+      document.getElementById('code-box').style.display = 'inline-block';
+      var deepLink = 'musicmemo://join?code=' + code;
+      document.getElementById('open-btn').href = deepLink;
+      // Try opening the app automatically via custom scheme fallback
+      var start = Date.now();
+      window.location.href = deepLink;
+      setTimeout(function() {
+        // If we're still here after 1.5s, the app probably isn't installed
+        if (Date.now() - start < 2000) return;
+      }, 1500);
+    } else {
+      document.getElementById('code-box').style.display = 'none';
+      document.querySelector('.hint').textContent = 'Invalid or missing invite code.';
+      document.getElementById('open-btn').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2QF39UZMSW.com.musicmemo.musicMemo",
+        "paths": ["/join", "/join?*", "/join/*"]
+      }
+    ]
+  }
+}
