@@ -74,18 +74,23 @@
   <script>
     var params = new URLSearchParams(window.location.search);
     var code = params.get('code');
-    if (code && /^[A-Za-z0-9]{6}$/.test(code)) {
-      code = code.toUpperCase();
+    if (code && /^\d{6}$/.test(code)) {
       document.getElementById('invite-code').textContent = code;
       document.getElementById('code-box').style.display = 'inline-block';
       var deepLink = 'musicmemo://join?code=' + code;
       document.getElementById('open-btn').href = deepLink;
-      // Try opening the app automatically via custom scheme fallback
-      var start = Date.now();
+
+      // Try to open the app automatically
       window.location.href = deepLink;
+
+      // After 1.5s, check if the page is still visible.
+      // If the app opened, the page goes to the background (document.hidden = true).
+      // If it's still visible, the app is not installed — show the App Store hint.
       setTimeout(function() {
-        // If we're still here after 1.5s, the app probably isn't installed
-        if (Date.now() - start < 2000) return;
+        if (!document.hidden) {
+          document.querySelector('.hint').textContent = "Don't have the app? Download it from the App Store.";
+          document.getElementById('open-btn').style.display = 'inline-block';
+        }
       }, 1500);
     } else {
       document.getElementById('code-box').style.display = 'none';

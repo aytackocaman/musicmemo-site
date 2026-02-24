@@ -1,10 +1,11 @@
 {
   "applinks": {
-    "apps": [],
     "details": [
       {
-        "appID": "2QF39UZMSW.com.musicmemo.musicMemo",
-        "paths": ["/join", "/join?*", "/join/*"]
+        "appIDs": ["2QF39UZMSW.com.musicmemo.musicMemo"],
+        "components": [
+          { "/": "/join", "comment": "Game invite links" }
+        ]
       }
     ]
   }
