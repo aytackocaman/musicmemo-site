@@ -73,11 +73,11 @@
   </div>
   <script>
     var params = new URLSearchParams(window.location.search);
-    var code = params.get('code');
+    var code = params.get('invite');
     if (code && /^\d{6}$/.test(code)) {
       document.getElementById('invite-code').textContent = code;
       document.getElementById('code-box').style.display = 'inline-block';
-      var deepLink = 'musicmemo://join?code=' + code;
+      var deepLink = 'musicmemo://join?invite=' + code;
       document.getElementById('open-btn').href = deepLink;
 
       // Try to open the app automatically
